@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Patrick Mahomes Stats</title>
+</head>
+<body>
+    <div id="app">
+        <div class="container-fluid">
+            <div class="row bg-danger">
+                <div class="col-lg-12">
+                    <p class="text-center text-left display-4 pt-2 text-warning" style="font-size: 25px; font-family: 'Cardo', serif;">Patrick Mahomes Stat Tracker</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row mt-3">
+                <div class="col-lg-6">
+                    <h3 class="text-warning">2020 Season</h3>
+                </div>
+                <div class="col-lg-6">
+                    <button class="btn btn-dark float-right" @click="showAddForm=true">
+                        <i class="fas fa-football-ball"></i>&nbsp;&nbsp;Add Game Data
+                    </button>
+                </div>
+            </div>
+            <hr class="bg-danger">
+            <div class="alert alert-danger" v-if="errorMsg">
+                {{ errorMsg }}
+            </div>
+            <div class="alert alert-success" v-if="successMsg">
+                {{ successMsg }}
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr class="text-center bg-danger text-warning">
+                                <th>Date</th>
+                                <th>Week</th>
+                                <th>Opp</th>
+                                <th>Result</th>
+                                <th>Score</th>
+                                <th>Comp</th>
+                                <th>Att</th>
+                                <th>Comp%</th>
+                                <th>Yds</th>
+                                <th>TD</th>
+                                <th>Int</th>
+                                <th>Rate</th>
+                                <th>RushYds</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center" style="color:white;" v-for="game in games">
+                                <td>{{ game.date }}</td>
+                                <td>{{ game.week }}</td>
+                                <td>{{ game.opp }}</td>
+                                <td>{{ game.result }}</td>
+                                <td>{{ game.score }}</td>
+                                <td>{{ game.comp }}</td>
+                                <td>{{ game.att }}</td>
+                                <td>{{ game.compPercent }}</td>
+                                <td>{{ game.yds }}</td>
+                                <td>{{ game.td }}</td>
+                                <td>{{ game.int }}</td>
+                                <td>{{ game.rate }}</td>
+                                <td>{{ game.rushyds }}</td>
+                                <td><a href="#" class="text-light" @click="showEditForm=true;"><i class="fas fa-edit"></i></a></td>
+                                <td><a href="#" class="text-danger" @click="showDeleteForm=true;"><i class="fas fa-trash-alt"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>  
+            </div>
+        </div>
+        <div id="overlay" v-if="showAddForm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Game Data</h5>
+                        <button type="button" class="close" @click="showAddForm=false">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form action="#" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="date" class="form-control-lg" placeholder="Date">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="week" class="form-control-lg" placeholder="Week">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="opp" class="form-control-lg" placeholder="Opp" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="result" class="form-control-lg" placeholder="Result" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="score" class="form-control-lg" placeholder="score" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="comp" class="form-control-lg" placeholder="Comp" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="att" class="form-control-lg" placeholder="Att" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="comp%" class="form-control-lg" placeholder="Comp%" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="yds" class="form-control-lg" placeholder="Yds" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="td" class="form-control-lg" placeholder="TD" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="int" class="form-control-lg" placeholder="Int" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="rate" class="form-control-lg" placeholder="Rate" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="rushyds" class="form-control-lg" placeholder="RushYds" >
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-warning btn-block btn-lg">Add Data</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="overlay" v-if="showEditForm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Game</h5>
+                        <button type="button" class="close" @click="showEditForm=false">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form action="#" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="date" class="form-control-lg" placeholder="Date">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="week" class="form-control-lg" placeholder="Week">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="opp" class="form-control-lg" placeholder="Opp" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="result" class="form-control-lg" placeholder="Result" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="score" class="form-control-lg" placeholder="score" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="comp" class="form-control-lg" placeholder="Comp" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="att" class="form-control-lg" placeholder="att" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="comp%" class="form-control-lg" placeholder="Comp%" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="yds" class="form-control-lg" placeholder="Yds" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="td" class="form-control-lg" placeholder="TD" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="int" class="form-control-lg" placeholder="Int" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="rate" class="form-control-lg" placeholder="Rate" >
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="rushyds" class="form-control-lg" placeholder="RushYds" >
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-warning btn-block btn-lg">Edit Data</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="overlay" v-if="showDeleteForm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete Game</h5>
+                        <button type="button" class="close" @click="showDeleteForm=false;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <h4 class="text-danger">Are you sure you want to delete this user?</h4>
+                        <h5>You are deleting week number x</h5>
+                        <hr>
+                        <button class="butn btn-danger btn-lg">Yes</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="butn btn-warning btn-lg" @click="showDeleteForm=false;">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
