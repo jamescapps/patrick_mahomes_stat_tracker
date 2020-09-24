@@ -3,13 +3,12 @@
     require_once("./config.php");
 
     class API {
-        public $result = array('error' => false);
 
         function selectAllData() {
-
+          
             $games = array();
+            $db = new Connect;
 
-            $db   = new Connect;
             $sql  = $db -> prepare("SELECT * FROM games ORDER BY id");
             $sql -> execute();
 
@@ -55,8 +54,37 @@
             $rushyds  = $_POST["rushyds"];
 
             $db  = new Connect;
-            $sql = $db -> query("INSERT INTO games (date, week, opp, result, score, comp, att, compPerc, yds, td, ints, rate, rushyds)
-                                 VALUES('$date', '$week', '$opp', '$result', '$score', '$comp', '$att', '$compPerc', '$yds', '$td', '$int', '$rate', '$rushyds')");
+            $sql = $db -> query("INSERT INTO games (
+                                    date, 
+                                    week, 
+                                    opp, 
+                                    result, 
+                                    score, 
+                                    comp, 
+                                    att, 
+                                    compPerc, 
+                                    yds, 
+                                    td, 
+                                    ints, 
+                                    rate, 
+                                    rushyds
+                                 )
+                                 VALUES(
+                                    '$date', 
+                                    '$week', 
+                                    '$opp', 
+                                    '$result', 
+                                    '$score', 
+                                    '$comp', 
+                                    '$att', 
+                                    '$compPerc', 
+                                    '$yds', 
+                                    '$td', 
+                                    '$int', 
+                                    '$rate', 
+                                    '$rushyds'
+                                )
+                                ");
 
             return $sql ? "Game added successfully!" : "Failed to add game...";
 
