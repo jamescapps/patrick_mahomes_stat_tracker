@@ -15,7 +15,7 @@ var app = new Vue({
             result: "",
             score: "",
             comp: "",
-            compPercent: "",
+            compPerc: "",
             yds: "",
             td: "",
             int: "",
@@ -37,8 +37,78 @@ var app = new Vue({
                 }
             })
         },
+        addGame() {
+            var formData = app.toFormData(app.newGame);
+
+            axios.post("http://localhost/Patrick_Mahomes_Stats/process.php?action=create", formData).then(function(response) {
+                app.newGame = {
+                    date: "",
+                    week: "",
+                    opp: "",
+                    result: "",
+                    score: "",
+                    comp: "",
+                    compPerc: "",
+                    yds: "",
+                    td: "",
+                    int: "",
+                    rate: "",
+                    rushyds: ""
+                };
+
+                if (response.data.error) {
+                    app.errorMsg = response.data;
+                } else {
+                    console.log(response.data)
+                    app.successMsg = response.data;
+                    app.getAllGames();
+                }
+            })
+        },
+        updateGame() {
+            var formData = app.toFormData(app.currentGame);
+
+            axios.post("http://localhost/Patrick_Mahomes_Stats/process.php?action=update", formData).then(function(response) {
+                app.currentGame = {};
+
+                if (response.data.error) {
+                    app.errorMsg = response.data;
+                } else {
+                    console.log(response.data)
+                    app.successMsg = response.data;
+                    app.getAllGames();
+                }
+            })           
+        },
         selectGame(game) {
             app.currentGame = game;
+        },
+        toFormData(obj) {
+            var convertData = new FormData();
+
+            for (var i in obj) {
+                convertData.append(i, obj[i]);
+            }
+
+            return convertData;
+        },
+        deleteGame() {
+            var formData = app.toFormData(app.currentGame);
+
+            axios.post("http://localhost/Patrick_Mahomes_Stats/process.php?action=delete", formData).then(function(response) {
+                app.currentGame = {};
+                if (response.data.error) {
+                    app.errorMsg = response.data.message;
+                } else {
+                    console.log(response.data)
+                    app.successMsg = response.data;
+                    app.getAllGames();
+                }
+            })
+        },
+        clearMsg() {
+            app.errorMsg = "";
+            app.successMsg = "";
         }
     }
 })

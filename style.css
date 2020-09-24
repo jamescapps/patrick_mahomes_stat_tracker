@@ -4,7 +4,7 @@ body {
 
 #overlay {
     font-family: 'Cardo', serif;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.5);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -15,4 +15,4 @@ body {
 tbody {
     color: white;
 }
-   
+
