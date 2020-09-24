@@ -11,87 +11,134 @@
 </head>
 <body>
     <div id="app">
+
+        <!-- Heading -->
+
         <div class="container-fluid">
             <div class="row bg-danger">
                 <div class="col-lg-12">
-                    <p class="text-center text-left display-4 pt-2 text-warning" style="font-size: 45px; font-family: 'Cardo', serif;">Patrick Mahomes Stat Tracker</p>
+                    <p class="text-center text-left display-4 pt-2 text-warning" 
+                       style="font-size: 45px; font-family: 'Cardo', serif;">
+                        Patrick Mahomes Stat Tracker
+                    </p>
                 </div>
             </div>
         </div>
+
+        <!-- Current season, add button, and error or success message. -->
+
         <div class="container">
             <div class="row mt-3">
                 <div class="col-lg-6">
                     <h3 class="text-warning">2020 Season</h3>
                 </div>
                 <div class="col-lg-6">
-                    <button class="btn btn-dark float-right" @click="showAddForm=true">
-                        <i class="fas fa-football-ball"></i>&nbsp;&nbsp;Add Game Data
+                    <button class="btn btn-dark float-right" 
+                            @click="showAddForm=true">
+                            <i class="fas fa-football-ball">
+                            </i>
+                            &nbsp;&nbsp;Add Game Data
                     </button>
                 </div>
             </div>
             <hr class="bg-danger">
-            <div class="alert alert-danger" v-if="errorMsg">
+            <div class="alert alert-danger" 
+                 v-if="errorMsg">
                 {{ errorMsg }}
             </div>
-            <div class="alert alert-success" v-if="successMsg">
+            <div class="alert alert-success" 
+                 v-if="successMsg">
                 {{ successMsg }}
             </div>
+
+            <!-- Table Heading -->
+
             <div class="row">
                 <div class="col-lg-12">
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr class="text-center bg-danger text-warning">
-                                <th>Date</th>
-                                <th>Week</th>
-                                <th>Opp</th>
-                                <th>Result</th>
-                                <th>Score</th>
-                                <th>Comp</th>
-                                <th>Att</th>
-                                <th>Comp%</th>
-                                <th>Yds</th>
-                                <th>TD</th>
-                                <th>Int</th>
-                                <th>Rate</th>
+
+                                <th>Date   </th>
+                                <th>Week   </th>
+                                <th>Opp    </th>
+                                <th>Result </th>
+                                <th>Score  </th>
+                                <th>Comp   </th>
+                                <th>Att    </th>
+                                <th>Comp%  </th>
+                                <th>Yds    </th>
+                                <th>TD     </th>
+                                <th>Int    </th>
+                                <th>Rate   </th>
                                 <th>RushYds</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>Edit   </th>
+                                <th>Delete </th>
+
                             </tr>
                         </thead>
+
+                        <!-- Table Data -->
+
                         <tbody>
-                            <tr class="text-center" style="color:white;" v-for="game in games">
-                                <td>{{ game.date }}</td>
-                                <td>{{ game.week }}</td>
-                                <td>{{ game.opp }}</td>
-                                <td>{{ game.result }}</td>
-                                <td>{{ game.score }}</td>
-                                <td>{{ game.comp }}</td>
-                                <td>{{ game.att }}</td>
+                            <tr class="text-center" 
+                                style="color:white;" 
+                                v-for="game in games">
+
+                                <td>{{ game.date     }}</td>
+                                <td>{{ game.week     }}</td>
+                                <td>{{ game.opp      }}</td>
+                                <td>{{ game.result   }}</td>
+                                <td>{{ game.score    }}</td>
+                                <td>{{ game.comp     }}</td>
+                                <td>{{ game.att      }}</td>
                                 <td>{{ game.compPerc }}</td>
-                                <td>{{ game.yds }}</td>
-                                <td>{{ game.td }}</td>
-                                <td>{{ game.int }}</td>
-                                <td>{{ game.rate }}</td>
-                                <td>{{ game.rushyds }}</td>
-                                <td><a href="#" class="text-light" @click="showEditForm=true; selectGame(game);"><i class="fas fa-edit"></i></a></td>
-                                <td><a href="#" class="text-danger" @click="showDeleteForm=true; selectGame(game)"><i class="fas fa-trash-alt"></i></a></td>
+                                <td>{{ game.yds      }}</td>
+                                <td>{{ game.td       }}</td>
+                                <td>{{ game.int      }}</td>
+                                <td>{{ game.rate     }}</td>
+                                <td>{{ game.rushyds  }}</td>
+
+                                <td><a href="#" 
+                                       class="text-light" 
+                                       @click="showEditForm=true; 
+                                               selectGame(game);">
+                                       <i class="fas fa-edit"></i>
+                                    </a>
+                                </td>
+                                <td><a href="#" 
+                                       class="text-danger" 
+                                       @click="showDeleteForm=true; 
+                                               selectGame(game);">
+                                       <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>  
             </div>
         </div>
-        <div id="overlay" v-if="showAddForm">
+
+        <!-- Add Game Data Form -->
+
+        <div id="overlay" 
+             v-if="showAddForm">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Add Game Data</h5>
-                        <button type="button" class="close" @click="showAddForm=false">
+                        <button 
+                                type="button" 
+                                class="close" 
+                                @click="showAddForm=false"
+                        >
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body p-4">
-                        <form action="#" method="POST">
+                        <form action="#" 
+                              method="POST">
                             <div class="form-group">
                                 <input 
                                         class="form-control-lg" 
@@ -224,70 +271,168 @@
                 </div>
             </div>
         </div>
-        <div id="overlay" v-if="showEditForm">
+
+        <!-- Edit Game Form -->
+
+        <div id="overlay" 
+             v-if="showEditForm">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Edit Week {{ currentGame.week }}</h5>
-                        <button type="button" class="close" @click="showEditForm=false">
+                        <button type="button" 
+                                class="close" 
+                                @click="showEditForm=false">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body p-4">
-                        <form action="#" method="POST">
+                        <form action="#" 
+                              method="POST">
                             <div class="form-group">
-                                <input type="text" name="date" class="form-control-lg" placeholder="Date" v-model="currentGame.date">
+                                <input
+                                        class="form-control-lg" 
+                                        type="text" 
+                                        name="date" 
+                                        placeholder="Date" 
+                                        v-model="currentGame.date"
+                                >
                             </div>
                             <div class="form-group">
-                                <input type="number" name="week" class="form-control-lg" placeholder="Week" v-model="currentGame.week">
+                                <input
+                                        class="form-control-lg" 
+                                        type="number" 
+                                        name="week" 
+                                        placeholder="Week" 
+                                        v-model="currentGame.week"
+                                >
                             </div>
                             <div class="form-group">
-                                <input type="text" name="opp" class="form-control-lg" placeholder="Opp" v-model="currentGame.opp">
+                                <input  
+                                        class="form-control-lg"
+                                        type="text" 
+                                        name="opp" 
+                                        placeholder="Opp" 
+                                        v-model="currentGame.opp"
+                                >
                             </div>
                             <div class="form-group">
-                                <input type="text" name="result" class="form-control-lg" placeholder="Result" v-model="currentGame.result">
+                                <input
+                                        class="form-control-lg" 
+                                        type="text" 
+                                        name="result" 
+                                        placeholder="Result" 
+                                        v-model="currentGame.result"
+                                >
                             </div>
                             <div class="form-group">
-                                <input type="text" name="score" class="form-control-lg" placeholder="Score" v-model="currentGame.score">
+                                <input 
+                                        class="form-control-lg"
+                                        type="text" 
+                                        name="score" 
+                                        placeholder="Score" 
+                                        v-model="currentGame.score"
+                                >
                             </div>
                             <div class="form-group">
-                                <input type="text" name="comp" class="form-control-lg" placeholder="Comp" v-model="currentGame.comp">
+                                <input
+                                        class="form-control-lg" 
+                                        type="text" 
+                                        name="comp" 
+                                        placeholder="Comp" 
+                                        v-model="currentGame.comp">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="att" class="form-control-lg" placeholder="att" v-model="currentGame.att">
+                                <input
+                                        class="form-control-lg" 
+                                        type="text" 
+                                        name="att" 
+                                        placeholder="att" 
+                                        v-model="currentGame.att"
+                                >
                             </div>
                             <div class="form-group">
-                                <input type="text" name="comp%" class="form-control-lg" placeholder="Comp%" v-model="currentGame.compPerc">
+                                <input
+                                        class="form-control-lg" 
+                                        type="text" 
+                                        name="comp%"  
+                                        placeholder="Comp%" 
+                                        v-model="currentGame.compPerc"
+                                >
                             </div>
                             <div class="form-group">
-                                <input type="text" name="yds" class="form-control-lg" placeholder="Yds" v-model="currentGame.yds">
+                                <input
+                                        class="form-control-lg" 
+                                        type="text" 
+                                        name="yds" 
+                                        placeholder="Yds" 
+                                        v-model="currentGame.yds"
+                                >
                             </div>
                             <div class="form-group">
-                                <input type="text" name="td" class="form-control-lg" placeholder="TD" v-model="currentGame.td">
+                                <input
+                                        class="form-control-lg" 
+                                        type="text" 
+                                        name="td" 
+                                        placeholder="TD" 
+                                        v-model="currentGame.td"
+                                >
                             </div>
                             <div class="form-group">
-                                <input type="text" name="int" class="form-control-lg" placeholder="Int" v-model="currentGame.int">
+                                <input
+                                        class="form-control-lg" 
+                                        type="text" 
+                                        name="int" 
+                                        placeholder="Int" 
+                                        v-model="currentGame.int"
+                                >
                             </div>
                             <div class="form-group">
-                                <input type="text" name="rate" class="form-control-lg" placeholder="Rate" v-model="currentGame.rate">
+                                <input
+                                        class="form-control-lg" 
+                                        type="text" 
+                                        name="rate"  
+                                        placeholder="Rate" 
+                                        v-model="currentGame.rate"
+                                >
                             </div>
                             <div class="form-group">
-                                <input type="text" name="rushyds" class="form-control-lg" placeholder="RushYds" v-model="currentGame.rushyds">
+                                <input
+                                        class="form-control-lg" 
+                                        type="text" 
+                                        name="rushyds"  
+                                        placeholder="RushYds" 
+                                        v-model="currentGame.rushyds"
+                                >
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-warning btn-block btn-lg" @click="showEditForm=false; updateGame(); clearMsg();">Update Data</button>
+                                <button 
+                                        class="btn btn-warning btn-block btn-lg" 
+                                        @click="showEditForm=false; 
+                                                updateGame(); 
+                                                clearMsg();"
+                                >Update Data
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="overlay" v-if="showDeleteForm">
+
+        <!-- Delete Game Form -->
+        
+        <div id="overlay" 
+             v-if="showDeleteForm">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Delete Game</h5>
-                        <button type="button" class="close" @click="showDeleteForm=false;">
+                        <button
+                                class="close"  
+                                type="button" 
+                                @click="showDeleteForm=false;"
+                        >
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -295,16 +440,28 @@
                         <h4 class="text-danger">Are you sure you want to delete this game?</h4>
                         <h5>You are deleting week number {{ currentGame.week }}</h5>
                         <hr>
-                        <button class="butn btn-danger btn-lg" @click="showDeleteForm=false; deleteGame(); clearMsg();">Yes</button>
+                        <button 
+                                class="butn btn-danger btn-lg" 
+                                @click="showDeleteForm=false; 
+                                        deleteGame(); 
+                                        clearMsg();"
+                        >Yes
+                        </button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button class="butn btn-warning btn-lg" @click="showDeleteForm=false;">No</button>
+                        <button 
+                                class="butn btn-warning btn-lg" 
+                                @click="showDeleteForm=false;"
+                        >No
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="./script.js"></script>
+
 </body>
 </html>

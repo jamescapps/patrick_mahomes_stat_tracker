@@ -29,7 +29,7 @@ var app = new Vue({
     },
     methods: {
         getAllGames() {
-            axios.get("http://localhost/Patrick_Mahomes_Stats/process.php?action=read").then(function(response) {
+            axios.get("http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=read").then(function(response) {
                 if (response.data.error) {
                     app.errorMsg = response.data.message;
                 } else {
@@ -40,7 +40,7 @@ var app = new Vue({
         addGame() {
             var formData = app.toFormData(app.newGame);
 
-            axios.post("http://localhost/Patrick_Mahomes_Stats/process.php?action=create", formData).then(function(response) {
+            axios.post("http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=create", formData).then(function(response) {
                 app.newGame = {
                     date: "",
                     week: "",
@@ -68,7 +68,7 @@ var app = new Vue({
         updateGame() {
             var formData = app.toFormData(app.currentGame);
 
-            axios.post("http://localhost/Patrick_Mahomes_Stats/process.php?action=update", formData).then(function(response) {
+            axios.post("http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=update", formData).then(function(response) {
                 app.currentGame = {};
 
                 if (response.data.error) {
@@ -95,7 +95,7 @@ var app = new Vue({
         deleteGame() {
             var formData = app.toFormData(app.currentGame);
 
-            axios.post("http://localhost/Patrick_Mahomes_Stats/process.php?action=delete", formData).then(function(response) {
+            axios.post("http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=delete", formData).then(function(response) {
                 app.currentGame = {};
                 if (response.data.error) {
                     app.errorMsg = response.data.message;
