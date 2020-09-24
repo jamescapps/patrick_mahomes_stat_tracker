@@ -11,6 +11,7 @@ const app = new Vue({
         showDeleteForm: false,
         games: [],
         newGame: {
+            
             date: "",
             week: "",
             opp: "",
