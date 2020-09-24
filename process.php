@@ -9,7 +9,7 @@
 
             $games = array();
 
-            $db    = new Connect;
+            $db   = new Connect;
             $sql  = $db -> prepare("SELECT * FROM games ORDER BY id");
             $sql -> execute();
 
@@ -58,11 +58,7 @@
             $sql = $db -> query("INSERT INTO games (date, week, opp, result, score, comp, att, compPerc, yds, td, ints, rate, rushyds)
                                  VALUES('$date', '$week', '$opp', '$result', '$score', '$comp', '$att', '$compPerc', '$yds', '$td', '$int', '$rate', '$rushyds')");
 
-            if ($sql) {
-                return "Game added successfully!";
-            } else {
-                return "Failed to add game!";
-            }
+            return $sql ? "Game added successfully!" : "Failed to add game...";
 
         }
 
@@ -99,15 +95,11 @@
                                  ints     = '$int',
                                  rate     = '$rate',
                                  rushyds  = '$rushyds'
-                                 
+
                                  WHERE id = '$id'
                                  ");
                                  
-            if ($sql) {
-                return "Game updated!";
-            } else {
-                return "Failed to update game!";
-            }
+            return $sql ? "Game updated successfully!" : "Failed to update game...";
 
         }
 
@@ -118,12 +110,7 @@
             $db    = new Connect;
             $sql  = $db -> query("DELETE FROM games WHERE id = '$id'");
             
-
-            if ($sql) {
-                return "Game deleted successfully!";
-            } else {
-                return "Failed to delete game...";
-            }
+            return $sql ? "Game deleted successfully!" : "Failed to delete game...";
 
         }
     }
