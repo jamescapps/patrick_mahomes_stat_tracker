@@ -9,6 +9,7 @@
         $action = $_GET['action'];
     }
 
+    // Check for which season is wanting to be viewed based on url.
     if (strpos($action, "read") !== false) {;
 
         $target_url = json_encode(parse_url($action));
