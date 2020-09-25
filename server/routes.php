@@ -9,8 +9,13 @@
         $action = $_GET['action'];
     }
 
-    if ($action == "read") {
-        echo $API -> selectAllData();
+    if (strpos($action, "read") !== false) {;
+
+        $target_url = json_encode(parse_url($action));
+        $url = substr($target_url, strpos($target_url, "/") + 1);
+        $year = substr($url, 0, -2);
+
+        echo $API -> selectAllData($year);
     }
 
     if ($action == "create") {

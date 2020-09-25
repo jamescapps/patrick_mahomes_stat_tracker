@@ -4,12 +4,12 @@
 
     class API {
 
-        function selectAllData() {
+        function selectAllData($tableName) {
           
             $games = array();
             $db = new Connect;
 
-            $sql  = $db -> prepare("SELECT * FROM games ORDER BY id");
+            $sql  = $db -> prepare("SELECT * FROM $tableName ORDER BY id");
             $sql -> execute();
 
             while ($outputData = $sql -> fetch(PDO::FETCH_ASSOC)) {
@@ -54,7 +54,7 @@
             $rushyds  = $_POST["rushyds"];
 
             $db  = new Connect;
-            $sql = $db -> query("INSERT INTO games (
+            $sql = $db -> query("INSERT INTO twentytwenty (
                                     date, 
                                     week, 
                                     opp, 
@@ -108,7 +108,7 @@
             $rushyds  = $_POST["rushyds"];
 
             $db = new Connect;
-            $sql = $db -> query("UPDATE games SET
+            $sql = $db -> query("UPDATE twentytwenty SET
 
                                  date     = '$date',
                                  week     = '$week',
@@ -136,7 +136,7 @@
             $id = $_POST["id"];
 
             $db    = new Connect;
-            $sql  = $db -> query("DELETE FROM games WHERE id = '$id'");
+            $sql  = $db -> query("DELETE FROM twentytwenty WHERE id = '$id'");
             
             return $sql ? "Game deleted successfully!" : "Failed to delete game...";
 

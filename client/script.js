@@ -1,4 +1,18 @@
 
+$(document).ready(() => {
+    $('dropdown-toggle').dropdown()
+    $('#show').text($(".dropdown1 button[id='default-option']").text());
+})
+
+twentyTwenty = document.getElementById("defaultOption")//.innerHTML
+twentyNineteen = document.getElementById("one").innerHTML
+twentyEighteen = document.getElementById("two").innerHTML
+
+console.log(twentyEighteen)
+console.log(twentyNineteen)
+console.log(twentyTwenty)
+
+
 const app = new Vue({
 
     el: '#app',
@@ -30,8 +44,8 @@ const app = new Vue({
 
     },
     
-    mounted() {
-        this.getAllGames()
+    created() {
+        this.getAllGames("twentytwenty")
     },
 
     methods: {
@@ -57,9 +71,9 @@ const app = new Vue({
             app.successMsg = ""
         },
 
-        getAllGames() {
+        getAllGames(season) {
 
-            axios.get("http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=read")
+            axios.get(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=read/${season}`)
                  .then((response) => {
 
                     if (response.data.error) {
