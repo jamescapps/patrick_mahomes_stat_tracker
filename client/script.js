@@ -4,14 +4,6 @@ $(document).ready(() => {
     $('#show').text($(".dropdown1 button[id='default-option']").text());
 })
 
-twentyTwenty = document.getElementById("defaultOption")//.innerHTML
-twentyNineteen = document.getElementById("one").innerHTML
-twentyEighteen = document.getElementById("two").innerHTML
-
-console.log(twentyEighteen)
-console.log(twentyNineteen)
-console.log(twentyTwenty)
-
 
 const app = new Vue({
 
@@ -115,7 +107,8 @@ const app = new Vue({
                         app.errorMsg = response.data
                     } else {
                         app.successMsg = response.data
-                        app.getAllGames()
+                        //app.getAllGames()
+                        location.reload();
                     }
 
                 }
@@ -136,7 +129,6 @@ const app = new Vue({
                         app.errorMsg = response.data
                     } else {
                         app.successMsg = response.data
-                        app.getAllGames()
                     }
                 }
             ) 
@@ -156,7 +148,8 @@ const app = new Vue({
                         app.errorMsg = response.data.message
                     } else {
                         app.successMsg = response.data
-                        app.getAllGames()
+                        //this.getAllGames()
+                        location.reload();
                     }
                 }
             )

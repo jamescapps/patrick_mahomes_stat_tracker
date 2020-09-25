@@ -28,35 +28,54 @@
             </div>
         </div>
 
-        <!-- Current season, add button, and error or success message. -->
+        <!-- Dropdown, add button, and error or success message. -->
 
         <div class="container">
             <div class="row mt-3">
                 <div class="col-lg-6">
-                    <div class="dropdown" >
-                        <button
+                    
+                    <li class="dropdown" >
+                        <a
                                 class="btn btn-warning dropdown-toggle status"
                                 type="button" 
                                 data-toggle="dropdown"
                         >  
-                               
-                        <span id="selected">2020 - 2021</span><span class="caret"></span></a>
-                        </button>
-                        <div class="dropdown-menu bg-warning" 
+                        2020 - 2021<i class="caret"></i></a>
+                        
+                        <ul class="dropdown-menu bg-warning" 
                              id="dropdownYear"
-                             v-for="game in games">
-                            <a  class="dropdown-item"
-                                id="defaultOption" 
-                                value="2020 - 2021" 
-                                href="#" 
-                                @click="getAllGames('twentytwenty')
-                                        selectGame(game);"
-                                >2020 - 2021
-                            </a>
-                          <a class="dropdown-item" id = "one" value="2019 - 2020" href="#" @click="getAllGames('twentynineteen'); selectGame(game);">2019 - 2020</a>
-                          <a class="dropdown-item" id = "two" value="2018 - 2019" href="#" @click="getAllGames('twentyeighteen'); selectGame(game);">2018 - 2019</a>
-                        </div>
-                    </div>
+                            >
+                            <li><a  
+                                    class="dropdown-item"
+                                    id="defaultOption" 
+                                    value="2020 - 2021" 
+                                    href="#" 
+                                    @click="getAllGames('twentytwenty')"
+                                    >2020 - 2021
+                                </a>
+                            </li>
+                            <li>
+                                <a 
+                                    class="dropdown-item" 
+                                    id = "one" value="2019 - 2020" 
+                                    href="#" 
+                                    @click="getAllGames('twentynineteen');"
+                                    >2019 - 2020
+                                </a>
+                            </li>
+                            <li>
+                                <a 
+                                    class="dropdown-item" 
+                                    id = "two" 
+                                    value="2018 - 2019" 
+                                    href="#" 
+                                    @click="getAllGames('twentyeighteen');"
+                                    >2018 - 2019
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
                 </div>
                 <div class="col-lg-6">
                     <button class="btn btn-dark float-right" 
@@ -284,6 +303,8 @@
                             </div>
                             <div class="form-group">
                                 <button 
+                                        type="button"
+                                        type="submit"
                                         class="btn btn-warning btn-block btn-lg" 
                                         @click="showAddForm=false; 
                                                 addGame(); 
@@ -433,6 +454,8 @@
                             </div>
                             <div class="form-group">
                                 <button 
+                                        type="button"
+                                        type="submit"
                                         class="btn btn-warning btn-block btn-lg" 
                                         @click="showEditForm=false; 
                                                 updateGame(); 
@@ -467,7 +490,9 @@
                         <h5>You are deleting week number {{ currentGame.week }}</h5>
                         <hr>
                         <button 
-                                class="butn btn-danger btn-lg" 
+                                type="button"
+                                type="submit"
+                                class="butn btn-danger btn-lg"
                                 @click="showDeleteForm=false; 
                                         deleteGame(); 
                                         clearMsg();"
@@ -492,6 +517,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
 
     <script src="./script.js"></script>
+
+
+    <script>
+
+        $('.dropdown-menu li a').click(function (e) {
+            
+            var newHeading = $(this).text();
+            var $heading = $('.dropdown > a');
+            var $caret = $('.caret', $heading);
+
+            $('.dropdown > a').html(newHeading + ' ').append($caret);
+        });
+
+        
+    </script>
 
 </body>
 </html>
