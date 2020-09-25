@@ -37,6 +37,7 @@
             return json_encode($games);
         }
 
+        // Need to adjust for all seasons
         function addGame() {
 
             $date     = $_POST["date"];
@@ -90,6 +91,7 @@
 
         }
 
+        // Need to adjust for all seasons
         function updateGame() {
 
             $id       = $_POST["id"];
@@ -131,6 +133,7 @@
 
         }
 
+        // Need to adjust for all seasons
         function deleteGame() {
 
             $id = $_POST["id"];

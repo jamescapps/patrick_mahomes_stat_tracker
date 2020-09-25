@@ -1,8 +1,9 @@
 
+// Toggle dropdown
 $(document).ready(() => {
     $('dropdown-toggle').dropdown()
     $('#show').text($(".dropdown1 button[id='default-option']").text());
-})
+});
 
 
 const app = new Vue({
@@ -107,8 +108,9 @@ const app = new Vue({
                         app.errorMsg = response.data
                     } else {
                         app.successMsg = response.data
-                        //app.getAllGames()
-                        location.reload();
+
+                        // Needs to be adjusted to handle other seasons
+                        app.getAllGames("twentytwenty")
                     }
 
                 }
@@ -129,6 +131,9 @@ const app = new Vue({
                         app.errorMsg = response.data
                     } else {
                         app.successMsg = response.data
+
+                        // Needs to be adjusted to handle other seasons
+                        app.getAllGames("twentytwenty")
                     }
                 }
             ) 
@@ -148,8 +153,9 @@ const app = new Vue({
                         app.errorMsg = response.data.message
                     } else {
                         app.successMsg = response.data
-                        //this.getAllGames()
-                        location.reload();
+                        
+                        // Needs to be adjusted to handle other seasons
+                        app.getAllGames("twentytwenty")
                     }
                 }
             )

@@ -303,12 +303,9 @@
                             </div>
                             <div class="form-group">
                                 <button 
-                                        type="button"
-                                        type="submit"
                                         class="btn btn-warning btn-block btn-lg" 
                                         @click="showAddForm=false; 
-                                                addGame(); 
-                                                getAllGames(); 
+                                                addGame();  
                                                 clearMsg();"
                                 >Add Data
                                 </button>
@@ -454,8 +451,6 @@
                             </div>
                             <div class="form-group">
                                 <button 
-                                        type="button"
-                                        type="submit"
                                         class="btn btn-warning btn-block btn-lg" 
                                         @click="showEditForm=false; 
                                                 updateGame(); 
@@ -490,8 +485,6 @@
                         <h5>You are deleting week number {{ currentGame.week }}</h5>
                         <hr>
                         <button 
-                                type="button"
-                                type="submit"
                                 class="butn btn-danger btn-lg"
                                 @click="showDeleteForm=false; 
                                         deleteGame(); 
@@ -521,16 +514,16 @@
 
     <script>
 
-        $('.dropdown-menu li a').click(function (e) {
+        // Change dropdown menu value
+        $('.dropdown-menu li a').click(function() {
             
-            var newHeading = $(this).text();
-            var $heading = $('.dropdown > a');
-            var $caret = $('.caret', $heading);
+            let newHeading = $(this).text()
+            let $heading   = $('.dropdown > a')
+            let $caret     = $('.caret', $heading)
 
-            $('.dropdown > a').html(newHeading + ' ').append($caret);
+            $('.dropdown > a').html(newHeading + ' ').append($caret)
         });
 
-        
     </script>
 
 </body>
