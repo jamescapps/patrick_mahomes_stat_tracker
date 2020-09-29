@@ -33,7 +33,6 @@
         <div class="container">
             <div class="row mt-3">
                 <div class="col-lg-6">
-                    
                     <li class="dropdown" >
                         <a
                                 class="btn btn-warning dropdown-toggle status"
@@ -43,7 +42,7 @@
                         2020 - 2021<i class="caret"></i></a>
                         
                         <ul class="dropdown-menu bg-warning" 
-                             id="dropdownYear"
+                            id="dropdownYear"
                             >
                             <li><a  
                                     class="dropdown-item"
@@ -73,7 +72,16 @@
                                     >2018 - 2019
                                 </a>
                             </li>
-                            
+                            <li>
+                                <a 
+                                    class="dropdown-item" 
+                                    id = "two" 
+                                    value="2018 - 2019" 
+                                    href="#" 
+                                    @click="getAllGames('twentyseventeen');"
+                                    >2017 - 2018
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </div>
@@ -305,7 +313,7 @@
                                 <button 
                                         class="btn btn-warning btn-block btn-lg" 
                                         @click="showAddForm=false; 
-                                                addGame();  
+                                                addGame('twentytwenty');  
                                                 clearMsg();"
                                 >Add Data
                                 </button>
@@ -487,7 +495,7 @@
                         <button 
                                 class="butn btn-danger btn-lg"
                                 @click="showDeleteForm=false; 
-                                        deleteGame(); 
+                                        deleteGame(currentGame.season); 
                                         clearMsg();"
                         >Yes
                         </button>
@@ -510,7 +518,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
 
     <script src="./script.js"></script>
-
 
     <script>
 

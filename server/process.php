@@ -55,7 +55,7 @@
             $rushyds  = $_POST["rushyds"];
 
             $db  = new Connect;
-            $sql = $db -> query("INSERT INTO twentytwenty (
+            $sql = $db -> prepare("INSERT INTO twentytwenty (
                                     date, 
                                     week, 
                                     opp, 
@@ -87,7 +87,12 @@
                                 )
                                 ");
 
-            return $sql ? "Game added successfully!" : "Failed to add game...";
+            try {
+                $sql -> execute();
+                return "Game added successfully!";
+            } catch(PDOException $e) {
+                return $e -> getMessage();
+            }
 
         }
 
@@ -110,8 +115,7 @@
             $rushyds  = $_POST["rushyds"];
 
             $db = new Connect;
-            $sql = $db -> query("UPDATE twentytwenty SET
-
+            $sql = $db -> prepare("UPDATE twentytwenty SET
                                  date     = '$date',
                                  week     = '$week',
                                  opp      = '$opp',
@@ -125,11 +129,15 @@
                                  ints     = '$int',
                                  rate     = '$rate',
                                  rushyds  = '$rushyds'
-
                                  WHERE id = '$id'
                                  ");
-                                 
-            return $sql ? "Game updated successfully!" : "Failed to update game...";
+
+            try {
+                $sql -> execute();
+                return "Game updated successfully!";
+            } catch(PDOException $e) {
+                return $e -> getMessage();
+            }
 
         }
 
@@ -138,11 +146,16 @@
 
             $id = $_POST["id"];
 
-            $db    = new Connect;
-            $sql  = $db -> query("DELETE FROM twentytwenty WHERE id = '$id'");
+            $db   = new Connect;
+            $sql  = $db -> prepare("DELETE FROM twentytwenty WHERE id = '$id'");
             
-            return $sql ? "Game deleted successfully!" : "Failed to delete game...";
-
+            try {
+                $sql -> execute();
+                return "Game deleted successfully!";
+            } catch(PDOException $e) {
+                return $e -> getMessage();
+            }
+            
         }
     }
 

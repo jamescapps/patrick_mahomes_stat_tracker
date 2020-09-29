@@ -1,4 +1,3 @@
-
 // Toggle dropdown
 $(document).ready(() => {
     $('dropdown-toggle').dropdown()
@@ -140,11 +139,11 @@ const app = new Vue({
 
         },
 
-        deleteGame() {
+        deleteGame(season) {
 
             const formData = app.toFormData(app.currentGame)
 
-            axios.post("http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=delete", formData)
+            axios.post(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=delete/${season}`, formData)
                  .then((response) => {
 
                     app.currentGame = {}

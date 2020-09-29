@@ -1,3 +1,4 @@
+ 
 <?php
 
     require_once("./process.php");
@@ -27,8 +28,13 @@
         echo $API -> updateGame();
     }
 
-    if ($action == "delete") {
-        echo $API -> deleteGame();
+    if (strpos($action, "delete") !== false) {;
+
+        $target_url = json_encode(parse_url($action));
+        $url = substr($target_url, strpos($target_url, "/") + 1);
+        $year = substr($url, 0, -2);
+
+        echo $API -> deleteGame($year);
     }
 
 ?>
