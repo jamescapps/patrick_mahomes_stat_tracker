@@ -68,7 +68,7 @@
             $sql -> bindParam(8,  $_POST["compPerc"], PDO::PARAM_INT);
             $sql -> bindParam(9,  $_POST["yds"],      PDO::PARAM_INT);
             $sql -> bindParam(10, $_POST["td"],       PDO::PARAM_INT);
-            $sql -> bindParam(11, $_POST["int"],     PDO::PARAM_INT);
+            $sql -> bindParam(11, $_POST["int"],      PDO::PARAM_INT);
             $sql -> bindParam(12, $_POST["rate"] ,    PDO::PARAM_STR);
             $sql -> bindParam(13, $_POST["rushyds"],  PDO::PARAM_INT);
 
@@ -112,7 +112,7 @@
             $sql -> bindParam(8,  $_POST["compPerc"], PDO::PARAM_INT);
             $sql -> bindParam(9,  $_POST["yds"],      PDO::PARAM_INT);
             $sql -> bindParam(10, $_POST["td"],       PDO::PARAM_INT);
-            $sql -> bindParam(11, $_POST["int"],     PDO::PARAM_INT);
+            $sql -> bindParam(11, $_POST["int"],      PDO::PARAM_INT);
             $sql -> bindParam(12, $_POST["rate"] ,    PDO::PARAM_STR);
             $sql -> bindParam(13, $_POST["rushyds"],  PDO::PARAM_INT);
             $sql -> bindParam(14, $_POST["id"],       PDO::PARAM_INT);
@@ -127,19 +127,12 @@
         }
 
         // Need to adjust for all seasons
-        public function deleteGame($season) {
-
-            switch($season) {
-                case "twentytwenty":
-                    $table = "twentytwenty";
-                    break;
-            }
-
-            $id = $_POST["id"];
+        public function deleteGame() {
 
             $db   = new Connect;
-            $sql  = $db -> prepare("DELETE FROM {table WHERE id = '$id'");
-            
+            $sql  = $db -> prepare("DELETE FROM twentytwenty WHERE id = :id");
+            $sql  -> bindParam(":id", $_POST["id"], PDO::PARAM_INT);
+
             try {
                 $sql -> execute();
                 return "Game deleted successfully!";
