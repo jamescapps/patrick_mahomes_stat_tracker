@@ -4,7 +4,7 @@
 
     class API {
 
-        function selectAllData($tableName) {
+        public function selectAllData($tableName) {
           
             $games = array();
             $db = new Connect;
@@ -38,7 +38,7 @@
         }
 
         // Need to adjust for all seasons
-        function addGame() {
+        public function addGame() {
 
             $date     = $_POST["date"];
             $week     = $_POST["week"];
@@ -50,7 +50,7 @@
             $compPerc = $_POST["compPerc"];
             $yds      = $_POST["yds"];
             $td       = $_POST["td"];
-            $int      = $_POST["int"];
+            $ints      = $_POST["int"];
             $rate     = $_POST["rate"];
             $rushyds  = $_POST["rushyds"];
 
@@ -70,22 +70,21 @@
                                     rate, 
                                     rushyds
                                  )
-                                 VALUES(
-                                    '$date', 
-                                    '$week', 
-                                    '$opp', 
-                                    '$result', 
-                                    '$score', 
-                                    '$comp', 
-                                    '$att', 
-                                    '$compPerc', 
-                                    '$yds', 
-                                    '$td', 
-                                    '$int', 
-                                    '$rate', 
-                                    '$rushyds'
-                                )
-                                ");
+                                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            $sql -> bindParam(1,  $date,     PDO::PARAM_STR);
+            $sql -> bindParam(2,  $week,     PDO::PARAM_STR);
+            $sql -> bindParam(3,  $opp,      PDO::PARAM_STR);
+            $sql -> bindParam(4,  $result,   PDO::PARAM_STR);
+            $sql -> bindParam(5,  $score,    PDO::PARAM_STR);
+            $sql -> bindParam(6,  $att,      PDO::PARAM_INT);
+            $sql -> bindParam(7,  $comp   ,  PDO::PARAM_INT);
+            $sql -> bindParam(8,  $compPerc, PDO::PARAM_INT);
+            $sql -> bindParam(9,  $yds,      PDO::PARAM_INT);
+            $sql -> bindParam(10, $td,       PDO::PARAM_INT);
+            $sql -> bindParam(11, $ints,     PDO::PARAM_INT);
+            $sql -> bindParam(12, $rate ,    PDO::PARAM_STR);
+            $sql -> bindParam(13, $rushyds,  PDO::PARAM_INT);
 
             try {
                 $sql -> execute();
@@ -97,7 +96,7 @@
         }
 
         // Need to adjust for all seasons
-        function updateGame() {
+        public function updateGame() {
 
             $id       = $_POST["id"];
             $date     = $_POST["date"];
@@ -110,27 +109,42 @@
             $compPerc = $_POST["compPerc"];
             $yds      = $_POST["yds"];
             $td       = $_POST["td"];
-            $int      = $_POST["int"];
+            $ints      = $_POST["int"];
             $rate     = $_POST["rate"];
             $rushyds  = $_POST["rushyds"];
 
             $db = new Connect;
             $sql = $db -> prepare("UPDATE twentytwenty SET
-                                 date     = '$date',
-                                 week     = '$week',
-                                 opp      = '$opp',
-                                 result   = '$result',
-                                 score    =  '$score',
-                                 comp     = '$comp',
-                                 att      = '$att',
-                                 compPerc = '$compPerc',
-                                 yds      = '$yds',
-                                 td       = '$td',
-                                 ints     = '$int',
-                                 rate     = '$rate',
-                                 rushyds  = '$rushyds'
-                                 WHERE id = '$id'
+                                 date     = ?,
+                                 week     = ?,
+                                 opp      = ?,
+                                 result   = ?,
+                                 score    = ?,
+                                 comp     = ?,
+                                 att      = ?,
+                                 compPerc = ?,
+                                 yds      = ?,
+                                 td       = ?,
+                                 ints     = ?,
+                                 rate     = ?,
+                                 rushyds  = ?
+                                 WHERE id = ?
                                  ");
+
+            $sql -> bindParam(1,  $date,     PDO::PARAM_STR);
+            $sql -> bindParam(2,  $week,     PDO::PARAM_STR);
+            $sql -> bindParam(3,  $opp,      PDO::PARAM_STR);
+            $sql -> bindParam(4,  $result,   PDO::PARAM_STR);
+            $sql -> bindParam(5,  $score,    PDO::PARAM_STR);
+            $sql -> bindParam(6,  $att,      PDO::PARAM_INT);
+            $sql -> bindParam(7,  $comp   ,  PDO::PARAM_INT);
+            $sql -> bindParam(8,  $compPerc, PDO::PARAM_INT);
+            $sql -> bindParam(9,  $yds,      PDO::PARAM_INT);
+            $sql -> bindParam(10, $td,       PDO::PARAM_INT);
+            $sql -> bindParam(11, $ints,     PDO::PARAM_INT);
+            $sql -> bindParam(12, $rate ,    PDO::PARAM_STR);
+            $sql -> bindParam(13, $rushyds,  PDO::PARAM_INT);
+            $sql -> bindParam(14, $id,       PDO::PARAM_INT);
 
             try {
                 $sql -> execute();
@@ -142,12 +156,18 @@
         }
 
         // Need to adjust for all seasons
-        function deleteGame() {
+        public function deleteGame($season) {
+
+            switch($season) {
+                case "twentytwenty":
+                    $table = "twentytwenty";
+                    break;
+            }
 
             $id = $_POST["id"];
 
             $db   = new Connect;
-            $sql  = $db -> prepare("DELETE FROM twentytwenty WHERE id = '$id'");
+            $sql  = $db -> prepare("DELETE FROM {table WHERE id = '$id'");
             
             try {
                 $sql -> execute();
@@ -159,4 +179,3 @@
         }
     }
 
-?>
