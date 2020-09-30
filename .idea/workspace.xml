@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0498d4af-0f28-43d3-a666-5a0b5892d31e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/server/process.php" beforeDir="false" afterPath="$PROJECT_DIR$/server/process.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +27,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="SQL Dialects" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -38,7 +40,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601409511801</updated>
       <workItem from="1601409513456" duration="6804000" />
-      <workItem from="1601492710346" duration="89000" />
+      <workItem from="1601492710346" duration="485000" />
     </task>
     <servers />
   </component>
