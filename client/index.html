@@ -39,7 +39,7 @@
                                 type="button" 
                                 data-toggle="dropdown"
                         >  
-                        2020 - 2021<i class="caret"></i></a>
+                        2020<i class="caret"></i></a>
                         
                         <ul class="dropdown-menu bg-warning" 
                             id="dropdownYear"
@@ -49,7 +49,7 @@
                                     id="defaultOption"
                                     href="#" 
                                     @click="getAllGames('twentytwenty')"
-                                    >2020 - 2021
+                                    >2020
                                 </a>
                             </li>
                             <li>
@@ -58,7 +58,7 @@
                                     id = "one"
                                     href="#" 
                                     @click="getAllGames('twentynineteen');"
-                                    >2019 - 2020
+                                    >2019
                                 </a>
                             </li>
                             <li>
@@ -67,7 +67,7 @@
                                     id = "two"
                                     href="#" 
                                     @click="getAllGames('twentyeighteen');"
-                                    >2018 - 2019
+                                    >2018
                                 </a>
                             </li>
                             <li>
@@ -76,7 +76,7 @@
                                     id = "two"
                                     href="#" 
                                     @click="getAllGames('twentyseventeen');"
-                                    >2017 - 2018
+                                    >2017
                                 </a>
                             </li>
                         </ul>
@@ -132,7 +132,7 @@
 
                         <tbody>
                             <tr class="text-center" 
-                                style="color:white;" 
+                                style="color:white;"
                                 v-for="game in games">
 
                                 <td>{{ game.date     }}</td>
@@ -308,9 +308,11 @@
                             </div>
                             <div class="form-group">
                                 <button 
-                                        class="btn btn-warning btn-block btn-lg" 
-                                        @click="showAddForm=false; 
-                                                addGame('twentyseventeen');
+                                        class="btn btn-warning btn-block btn-lg"
+                                        v-for="game in games"
+                                        @click="showAddForm=false;
+                                        // Game won't work if it is an empty table
+                                                addGame(game.season);
                                                 clearMsg();"
                                 >Add Data
                                 </button>
@@ -458,7 +460,7 @@
                                 <button 
                                         class="btn btn-warning btn-block btn-lg" 
                                         @click="showEditForm=false; 
-                                                updateGame(); 
+                                                updateGame(currentGame.season);
                                                 clearMsg();"
                                 >Update Data
                                 </button>
@@ -490,6 +492,7 @@
                         <h5>You are deleting week number {{ currentGame.week }}</h5>
                         <hr>
                         <button
+                                type="button"
                                 class="butn btn-danger btn-lg"
                                 @click="showDeleteForm=false; 
                                         deleteGame(currentGame.season);

@@ -4,12 +4,35 @@
 
     class API {
 
-        public function selectAllData($tableName) {
+        public function checkSeason($season) {
+            $seasonTB = "";
+
+            switch($season) {
+                case "twentytwenty":
+                    $seasonTB = "twentytwenty";
+                    break;
+                case "twentynineteen":
+                    $seasonTB = "twentynineteen";
+                    break;
+                case "twentyeighteen":
+                    $seasonTB = "twentyeighteen";
+                    break;
+                case "twentyseventeen":
+                    $seasonTB = "twentyseventeen";
+                    break;
+            }
+
+            return $seasonTB;
+        }
+
+        public function selectAllData($season) {
+
+            $seasonTB = $this -> checkSeason($season);
           
             $games = array();
             $db = new Connect;
 
-            $sql  = $db -> prepare("SELECT * FROM $tableName ORDER BY id");
+            $sql  = $db -> prepare("SELECT * FROM $seasonTB ORDER BY id");
             $sql -> execute();
 
             while ($outputData = $sql -> fetch(PDO::FETCH_ASSOC)) {
@@ -39,10 +62,12 @@
         }
 
         // Need to adjust for all seasons
-        public function addGame() {
+        public function addGame($season) {
+
+             $seasonTB = $this -> checkSeason($season);
 
             $db  = new Connect;
-            $sql = $db -> prepare("INSERT INTO twentytwenty (
+            $sql = $db -> prepare("INSERT INTO $seasonTB (
                                     date, 
                                     week, 
                                     opp, 
@@ -87,10 +112,12 @@
         }
 
         // Need to adjust for all seasons
-        public function updateGame() {
+        public function updateGame($season) {
+
+            $seasonTB = $this -> checkSeason($season);
 
             $db = new Connect;
-            $sql = $db -> prepare("UPDATE twentytwenty SET
+            $sql = $db -> prepare("UPDATE $seasonTB SET
                                  date     = ?,
                                  week     = ?,
                                  opp      = ?,
@@ -138,22 +165,7 @@
 
         public function deleteGame($season) {
 
-            $seasonTB = "";
-
-            switch($season) {
-                case "twentytwenty":
-                    $seasonTB = "twentytwenty";
-                    break;
-                case "twentynineteen":
-                    $seasonTB = "twentynineteen";
-                    break;
-                case "twentyeighteen":
-                    $seasonTB = "twentyeighteen";
-                    break;
-                case "twentyseventeen":
-                    $seasonTB = "twentyseventeen";
-                    break;
-            }
+            $seasonTB = $this -> checkSeason($season);
 
             $db   = new Connect;
             $sql  = $db -> prepare("DELETE FROM $seasonTB WHERE id = :id");
@@ -171,5 +183,6 @@
             }
             
         }
+
     }
 

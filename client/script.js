@@ -79,11 +79,11 @@ const app = new Vue({
 
         },
 
-        addGame() {
+        addGame(season) {
 
             const formData = app.toFormData(app.newGame)
 
-            axios.post("http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=create", formData)
+            axios.post(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=create/${season}`, formData)
                  .then((response) => {
 
                     app.newGame = {
@@ -107,21 +107,19 @@ const app = new Vue({
                         app.errorMsg = response.data
                     } else {
                         app.successMsg = response.data
-
-                        // Needs to be adjusted to handle other seasons
-                        app.getAllGames("twentytwenty")
                     }
 
+                    app.getAllGames(season)
                 }
             )
 
         },
 
-        updateGame() {
+        updateGame(season) {
 
             const formData = app.toFormData(app.currentGame)
 
-            axios.post("http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=update", formData)
+            axios.post(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=update/${season}`, formData)
                  .then((response) => {
 
                     app.currentGame = {}
@@ -130,10 +128,9 @@ const app = new Vue({
                         app.errorMsg = response.data
                     } else {
                         app.successMsg = response.data
-
-                        // Needs to be adjusted to handle other seasons
-                        app.getAllGames("twentytwenty")
                     }
+
+                     app.getAllGames(season)
                 }
             ) 
 
@@ -152,10 +149,9 @@ const app = new Vue({
                         app.errorMsg = response.data.message
                     } else {
                         app.successMsg = response.data
-                        
-                        // Needs to be adjusted to handle other seasons
-                        //app.getAllGames(app.currentGame.season)
                     }
+
+                     app.getAllGames(season)
                 }
             )
 

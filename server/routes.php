@@ -20,12 +20,22 @@
         echo $API -> selectAllData($year);
     }
 
-    if ($action == "create") {
-        echo $API -> addGame();
+    if (strpos($action, "create") !== false) {;
+
+        $target_url = json_encode(parse_url($action));
+        $url = substr($target_url, strpos($target_url, "/") + 1);
+        $year = substr($url, 0, -2);
+
+        echo $API -> addGame($year);
     }
 
-    if ($action == "update") {
-        echo $API -> updateGame();
+    if (strpos($action, "update") !== false) {;
+
+        $target_url = json_encode(parse_url($action));
+        $url = substr($target_url, strpos($target_url, "/") + 1);
+        $year = substr($url, 0, -2);
+
+        echo $API -> updateGame($year);
     }
 
     if (strpos($action, "delete") !== false) {;
