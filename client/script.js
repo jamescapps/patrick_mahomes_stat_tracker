@@ -154,7 +154,7 @@ const app = new Vue({
                         app.successMsg = response.data
                         
                         // Needs to be adjusted to handle other seasons
-                        app.getAllGames("twentytwenty")
+                        //app.getAllGames(app.currentGame.season)
                     }
                 }
             )

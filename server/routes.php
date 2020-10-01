@@ -37,4 +37,3 @@
         echo $API -> deleteGame($year);
     }
 
-?>

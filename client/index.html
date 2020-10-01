@@ -46,8 +46,7 @@
                             >
                             <li><a  
                                     class="dropdown-item"
-                                    id="defaultOption" 
-                                    value="2020 - 2021" 
+                                    id="defaultOption"
                                     href="#" 
                                     @click="getAllGames('twentytwenty')"
                                     >2020 - 2021
@@ -56,7 +55,7 @@
                             <li>
                                 <a 
                                     class="dropdown-item" 
-                                    id = "one" value="2019 - 2020" 
+                                    id = "one"
                                     href="#" 
                                     @click="getAllGames('twentynineteen');"
                                     >2019 - 2020
@@ -65,8 +64,7 @@
                             <li>
                                 <a 
                                     class="dropdown-item" 
-                                    id = "two" 
-                                    value="2018 - 2019" 
+                                    id = "two"
                                     href="#" 
                                     @click="getAllGames('twentyeighteen');"
                                     >2018 - 2019
@@ -75,8 +73,7 @@
                             <li>
                                 <a 
                                     class="dropdown-item" 
-                                    id = "two" 
-                                    value="2018 - 2019" 
+                                    id = "two"
                                     href="#" 
                                     @click="getAllGames('twentyseventeen');"
                                     >2017 - 2018
@@ -211,11 +208,11 @@
                                 >
                             </div>
                             <div class="form-group">
-                                <input 
-                                        class="form-control-lg" 
-                                        type="text" 
-                                        name="opp" 
-                                        placeholder="Opp" 
+                                <input
+                                        class="form-control-lg"
+                                        type="text"
+                                        name="opp"
+                                        placeholder="Opp"
                                         v-model="newGame.opp"
                                 >
                             </div>
@@ -313,7 +310,7 @@
                                 <button 
                                         class="btn btn-warning btn-block btn-lg" 
                                         @click="showAddForm=false; 
-                                                addGame('twentytwenty');  
+                                                addGame('twentyseventeen');
                                                 clearMsg();"
                                 >Add Data
                                 </button>
@@ -492,10 +489,10 @@
                         <h4 class="text-danger">Are you sure you want to delete this game?</h4>
                         <h5>You are deleting week number {{ currentGame.week }}</h5>
                         <hr>
-                        <button 
+                        <button
                                 class="butn btn-danger btn-lg"
                                 @click="showDeleteForm=false; 
-                                        deleteGame(currentGame.season); 
+                                        deleteGame(currentGame.season);
                                         clearMsg();"
                         >Yes
                         </button>

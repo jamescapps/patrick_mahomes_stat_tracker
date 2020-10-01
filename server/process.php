@@ -17,6 +17,7 @@
                 $games[$outputData["id"]] = array(
 
                     "id"         => $outputData["id"],
+                    "season"     => $outputData["season"],
                     "date"       => $outputData["date"],
                     "week"       => $outputData["week"],
                     "opp"        => $outputData["opp"],
@@ -73,10 +74,14 @@
             $sql -> bindParam(13, $_POST["rushyds"],  PDO::PARAM_INT);
 
             try {
+
                 $sql -> execute();
                 return "Game added successfully!";
+
             } catch(PDOException $e) {
+
                 return $e -> getMessage();
+
             }
 
         }
@@ -118,26 +123,51 @@
             $sql -> bindParam(14, $_POST["id"],       PDO::PARAM_INT);
 
             try {
+
                 $sql -> execute();
                 return "Game updated successfully!";
+
             } catch(PDOException $e) {
+
                 return $e -> getMessage();
+
             }
 
         }
 
-        // Need to adjust for all seasons
-        public function deleteGame() {
+
+        public function deleteGame($season) {
+
+            $seasonTB = "";
+
+            switch($season) {
+                case "twentytwenty":
+                    $seasonTB = "twentytwenty";
+                    break;
+                case "twentynineteen":
+                    $seasonTB = "twentynineteen";
+                    break;
+                case "twentyeighteen":
+                    $seasonTB = "twentyeighteen";
+                    break;
+                case "twentyseventeen":
+                    $seasonTB = "twentyseventeen";
+                    break;
+            }
 
             $db   = new Connect;
-            $sql  = $db -> prepare("DELETE FROM twentytwenty WHERE id = :id");
+            $sql  = $db -> prepare("DELETE FROM $seasonTB WHERE id = :id");
             $sql  -> bindParam(":id", $_POST["id"], PDO::PARAM_INT);
 
             try {
+
                 $sql -> execute();
                 return "Game deleted successfully!";
+
             } catch(PDOException $e) {
+
                 return $e -> getMessage();
+
             }
             
         }
