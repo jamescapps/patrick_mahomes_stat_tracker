@@ -48,34 +48,39 @@
                                     class="dropdown-item"
                                     id="defaultOption"
                                     href="#" 
-                                    @click="getAllGames('twentytwenty')"
+                                    @click="getAllGames('twentytwenty');
+                                            selectSeason('twentytwenty');
+                                            clearMsg();"
                                     >2020
                                 </a>
                             </li>
                             <li>
                                 <a 
-                                    class="dropdown-item" 
-                                    id = "one"
+                                    class="dropdown-item"
                                     href="#" 
-                                    @click="getAllGames('twentynineteen');"
+                                    @click="getAllGames('twentynineteen');
+                                            selectSeason('twentynineteen')
+                                            clearMsg();"
                                     >2019
                                 </a>
                             </li>
                             <li>
                                 <a 
-                                    class="dropdown-item" 
-                                    id = "two"
+                                    class="dropdown-item"
                                     href="#" 
-                                    @click="getAllGames('twentyeighteen');"
+                                    @click="getAllGames('twentyeighteen');
+                                            selectSeason('twentyeighteen')
+                                            clearMsg();"
                                     >2018
                                 </a>
                             </li>
                             <li>
                                 <a 
-                                    class="dropdown-item" 
-                                    id = "two"
+                                    class="dropdown-item"
                                     href="#" 
-                                    @click="getAllGames('twentyseventeen');"
+                                    @click="getAllGames('twentyseventeen');
+                                            selectSeason('twentyseventeen')
+                                            clearMsg();"
                                     >2017
                                 </a>
                             </li>
@@ -172,7 +177,7 @@
 
         <!-- Add Game Data Form -->
 
-        <div id="overlay" 
+        <div id="overlay"
              v-if="showAddForm">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -309,10 +314,10 @@
                             <div class="form-group">
                                 <button 
                                         class="btn btn-warning btn-block btn-lg"
-                                        v-for="game in games"
+
                                         @click="showAddForm=false;
                                         // Game won't work if it is an empty table
-                                                addGame(game.season);
+                                                addGame(currentGame.season);
                                                 clearMsg();"
                                 >Add Data
                                 </button>
@@ -325,7 +330,7 @@
 
         <!-- Edit Game Form -->
 
-        <div id="overlay" 
+        <div id="overlay"
              v-if="showEditForm">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -413,10 +418,10 @@
                             </div>
                             <div class="form-group">
                                 <input
-                                        class="form-control-lg" 
-                                        type="text" 
-                                        name="yds" 
-                                        placeholder="Yds" 
+                                        class="form-control-lg"
+                                        type="text"
+                                        name="yds"
+                                        placeholder="Yds"
                                         v-model="currentGame.yds"
                                 >
                             </div>
@@ -473,7 +478,7 @@
 
         <!-- Delete Game Form -->
         
-        <div id="overlay" 
+        <div id="overlay"
              v-if="showDeleteForm">
             <div class="modal-dialog">
                 <div class="modal-content">

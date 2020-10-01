@@ -41,18 +41,18 @@ const app = new Vue({
     },
 
     methods: {
+        selectSeason(season) {
+            app.currentGame.season = season
+        },
 
         selectGame(game) {
             app.currentGame = game
         },
 
-        toFormData(obj) {
+        toFormData: function (obj) {
 
             const convertData = new FormData()
-
-            for (let i in obj) {
-                convertData.append(i, obj[i])
-            }
+            for (let i in obj) if (obj.hasOwnProperty(i)) convertData.append(i, obj[i])
 
             return convertData
 

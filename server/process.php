@@ -4,7 +4,7 @@
 
     class API {
 
-        public function checkSeason($season) {
+        private function checkSeason($season) {
             $seasonTB = "";
 
             switch($season) {
