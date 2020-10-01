@@ -26,7 +26,6 @@
         }
 
         public function selectAllData($season) {
-
             $seasonTB = $this -> checkSeason($season);
           
             $games = array();
@@ -61,10 +60,8 @@
             return json_encode($games);
         }
 
-        // Need to adjust for all seasons
         public function addGame($season) {
-
-             $seasonTB = $this -> checkSeason($season);
+            $seasonTB = $this -> checkSeason($season);
 
             $db  = new Connect;
             $sql = $db -> prepare("INSERT INTO $seasonTB (
@@ -99,21 +96,14 @@
             $sql -> bindParam(13, $_POST["rushyds"],  PDO::PARAM_INT);
 
             try {
-
                 $sql -> execute();
                 return "Game added successfully!";
-
             } catch(PDOException $e) {
-
                 return $e -> getMessage();
-
             }
-
         }
 
-        // Need to adjust for all seasons
         public function updateGame($season) {
-
             $seasonTB = $this -> checkSeason($season);
 
             $db = new Connect;
@@ -150,21 +140,14 @@
             $sql -> bindParam(14, $_POST["id"],       PDO::PARAM_INT);
 
             try {
-
                 $sql -> execute();
                 return "Game updated successfully!";
-
             } catch(PDOException $e) {
-
                 return $e -> getMessage();
-
             }
-
         }
 
-
         public function deleteGame($season) {
-
             $seasonTB = $this -> checkSeason($season);
 
             $db   = new Connect;
@@ -172,16 +155,11 @@
             $sql  -> bindParam(":id", $_POST["id"], PDO::PARAM_INT);
 
             try {
-
                 $sql -> execute();
                 return "Game deleted successfully!";
-
             } catch(PDOException $e) {
-
                 return $e -> getMessage();
-
             }
-            
         }
 
     }

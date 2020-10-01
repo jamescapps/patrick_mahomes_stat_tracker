@@ -6,10 +6,8 @@ $(document).ready(() => {
 
 
 const app = new Vue({
-
     el: '#app',
     data: {
-
         errorMsg: "",
         successMsg: "",
         showAddForm: false,
@@ -30,12 +28,10 @@ const app = new Vue({
             int: "",
             rate: "",
             rushyds: ""
-
         },
         currentGame: {}
-
     },
-    
+
     created() {
         this.getAllGames("twentytwenty")
     },
@@ -50,12 +46,10 @@ const app = new Vue({
         },
 
         toFormData: function (obj) {
-
             const convertData = new FormData()
             for (let i in obj) if (obj.hasOwnProperty(i)) convertData.append(i, obj[i])
 
             return convertData
-
         },
 
         clearMsg() {
@@ -64,30 +58,23 @@ const app = new Vue({
         },
 
         getAllGames(season) {
-
             axios.get(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=read/${season}`)
                  .then((response) => {
-
                     if (response.data.error) {
                         app.errorMsg = response.data.message
                     } else {
                         app.games = response.data
                     }
-
                 }
             )
-
         },
 
         addGame(season) {
-
             const formData = app.toFormData(app.newGame)
 
             axios.post(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=create/${season}`, formData)
                  .then((response) => {
-
                     app.newGame = {
-
                         date: "",
                         week: "",
                         opp: "",
@@ -112,11 +99,9 @@ const app = new Vue({
                     app.getAllGames(season)
                 }
             )
-
         },
 
         updateGame(season) {
-
             const formData = app.toFormData(app.currentGame)
 
             axios.post(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=update/${season}`, formData)
@@ -132,17 +117,14 @@ const app = new Vue({
 
                      app.getAllGames(season)
                 }
-            ) 
-
+            )
         },
 
         deleteGame(season) {
-
             const formData = app.toFormData(app.currentGame)
 
             axios.post(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=delete/${season}`, formData)
                  .then((response) => {
-
                     app.currentGame = {}
 
                     if (response.data.error) {
@@ -154,7 +136,6 @@ const app = new Vue({
                      app.getAllGames(season)
                 }
             )
-
         }
 
     }

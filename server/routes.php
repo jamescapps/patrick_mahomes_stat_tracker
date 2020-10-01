@@ -4,14 +4,15 @@
     require_once("./process.php");
 
     $action = "";
-    $API = new API;
+    $API    = new API;
 
     function getYear($action) {
-        $target_url = json_encode(parse_url($action));
-        $url = substr($target_url, strpos($target_url, "/") + 1);
+        $target = json_encode(parse_url($action));
+        $url    = substr($target, strpos($target, "/") + 1);
 
         return substr($url, 0, -2);
     }
+
 
     if (isset($_GET['action'])) $action = $_GET['action'];
 
