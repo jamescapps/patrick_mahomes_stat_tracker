@@ -2,7 +2,7 @@ body {
     background-color: black;
 }
 
-.overlay {
+#overlay {
     font-family: 'Cardo', serif;
     background: rgba(255, 255, 255, 0.5);
     position: fixed;
@@ -14,4 +14,12 @@ body {
 
 tbody {
     color: white;
+}
+
+table caption {
+    caption-side: top;
+    color: white;
+    text-align: center;
+    font-family: 'Cardo', serif;
+    font-size: 20px;
 }

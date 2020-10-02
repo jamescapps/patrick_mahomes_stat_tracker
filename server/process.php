@@ -31,6 +31,7 @@
             $games = array();
             $db = new Connect;
 
+            // Order by does not appear to be working.
             $sql  = $db -> prepare("SELECT * FROM $seasonTB ORDER BY id DESC");
             $sql -> execute();
 

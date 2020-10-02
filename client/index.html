@@ -106,16 +106,108 @@
                 {{ successMsg }}
             </div>
 
-            <!-- Table Heading -->
+            <!--  Totals Table Heading -->
 
             <div class="row">
                 <div class="col-lg-12">
                     <table class="table table-bordered table-striped">
+                        <caption>Totals</caption>
+                        <thead>
+                        <tr class="text-center bg-danger text-warning">
+
+
+                            <th>W</th>
+                            <th>L </th>
+                            <th>Comp</th>
+                            <th>Att</th>
+                            <th>Comp%</th>
+                            <th>Yds</th>
+                            <th>TD</th>
+                            <th>Int</th>
+                            <th>Rate</th>
+                            <th>RushYds</th>
+
+                        </tr>
+                        </thead>
+
+                        <!-- Table Data -->
+
+                        <tbody>
+                        <tr class="text-center"
+                            style="color:white;"
+                           >
+
+                            <td>10</td>
+                            <td>6</td>
+                            <td>72</td>
+                            <td>322</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>123</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--  Avgs Table Heading -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-bordered table-striped">
+                        <caption>Average</caption>
+                        <thead>
+                        <tr class="text-center bg-danger text-warning">
+
+                            <th>Comp</th>
+                            <th>Att</th>
+                            <th>Comp%</th>
+                            <th>Yds</th>
+                            <th>TD</th>
+                            <th>Int</th>
+                            <th>Rate</th>
+                            <th>RushYds</th>
+
+                        </tr>
+                        </thead>
+
+                        <!-- Table Data -->
+
+                        <tbody>
+                        <tr class="text-center"
+                            style="color:white;"
+                        >
+
+                            <td>72</td>
+                            <td>322</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>123</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--  Weekly Table Heading -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-bordered table-striped">
+                        <caption>Weekly</caption>
                         <thead>
                             <tr class="text-center bg-danger text-warning">
 
-                                <th>Date   </th>
                                 <th>Week   </th>
+                                <th>Date   </th>
                                 <th>Opp    </th>
                                 <th>Result </th>
                                 <th>Score  </th>
@@ -140,8 +232,8 @@
                                 style="color:white;"
                                 v-for="game in games">
 
-                                <td>{{ game.date     }}</td>
                                 <td>{{ game.week     }}</td>
+                                <td>{{ game.date     }}</td>
                                 <td>{{ game.opp      }}</td>
                                 <td>{{ game.result   }}</td>
                                 <td>{{ game.score    }}</td>
