@@ -2,7 +2,7 @@ body {
     background-color: black;
 }
 
-#overlay {
+.overlay {
     font-family: 'Cardo', serif;
     background: rgba(255, 255, 255, 0.5);
     position: fixed;

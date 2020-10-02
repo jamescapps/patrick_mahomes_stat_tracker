@@ -31,11 +31,10 @@
             $games = array();
             $db = new Connect;
 
-            $sql  = $db -> prepare("SELECT * FROM $seasonTB ORDER BY id");
+            $sql  = $db -> prepare("SELECT * FROM $seasonTB ORDER BY id DESC");
             $sql -> execute();
 
             while ($outputData = $sql -> fetch(PDO::FETCH_ASSOC)) {
-
                 $games[$outputData["id"]] = array(
 
                     "id"         => $outputData["id"],
@@ -82,13 +81,13 @@
                                  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             $sql -> bindParam(1,  $_POST["date"],     PDO::PARAM_STR);
-            $sql -> bindParam(2,  $_POST["week"],     PDO::PARAM_STR);
+            $sql -> bindParam(2,  $_POST["week"],     PDO::PARAM_INT);
             $sql -> bindParam(3,  $_POST["opp"],      PDO::PARAM_STR);
             $sql -> bindParam(4,  $_POST["result"],   PDO::PARAM_STR);
             $sql -> bindParam(5,  $_POST["score"],    PDO::PARAM_STR);
             $sql -> bindParam(6,  $_POST["att"],      PDO::PARAM_INT);
             $sql -> bindParam(7,  $_POST["comp"]   ,  PDO::PARAM_INT);
-            $sql -> bindParam(8,  $_POST["compPerc"], PDO::PARAM_INT);
+            $sql -> bindParam(8,  $_POST["compPerc"], PDO::PARAM_STR);
             $sql -> bindParam(9,  $_POST["yds"],      PDO::PARAM_INT);
             $sql -> bindParam(10, $_POST["td"],       PDO::PARAM_INT);
             $sql -> bindParam(11, $_POST["int"],      PDO::PARAM_INT);
@@ -125,13 +124,13 @@
                                  ");
 
             $sql -> bindParam(1,  $_POST["date"],     PDO::PARAM_STR);
-            $sql -> bindParam(2,  $_POST["week"],     PDO::PARAM_STR);
+            $sql -> bindParam(2,  $_POST["week"],     PDO::PARAM_INT);
             $sql -> bindParam(3,  $_POST["opp"],      PDO::PARAM_STR);
             $sql -> bindParam(4,  $_POST["result"],   PDO::PARAM_STR);
             $sql -> bindParam(5,  $_POST["score"],    PDO::PARAM_STR);
             $sql -> bindParam(6,  $_POST["att"],      PDO::PARAM_INT);
             $sql -> bindParam(7,  $_POST["comp"]   ,  PDO::PARAM_INT);
-            $sql -> bindParam(8,  $_POST["compPerc"], PDO::PARAM_INT);
+            $sql -> bindParam(8,  $_POST["compPerc"], PDO::PARAM_STR);
             $sql -> bindParam(9,  $_POST["yds"],      PDO::PARAM_INT);
             $sql -> bindParam(10, $_POST["td"],       PDO::PARAM_INT);
             $sql -> bindParam(11, $_POST["int"],      PDO::PARAM_INT);

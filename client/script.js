@@ -32,8 +32,10 @@ const app = new Vue({
         currentGame: {}
     },
 
-    created() {
+
+    mounted() {
         this.getAllGames("twentytwenty")
+        this.currentGame.season = "twentytwenty"
     },
 
     methods: {

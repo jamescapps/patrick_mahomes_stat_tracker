@@ -314,9 +314,7 @@
                             <div class="form-group">
                                 <button 
                                         class="btn btn-warning btn-block btn-lg"
-
                                         @click="showAddForm=false;
-                                        // Game won't work if it is an empty table
                                                 addGame(currentGame.season);
                                                 clearMsg();"
                                 >Add Data
@@ -498,7 +496,7 @@
                         <hr>
                         <button
                                 type="button"
-                                class="butn btn-danger btn-lg"
+                                class="btn btn-danger btn-lg"
                                 @click="showDeleteForm=false; 
                                         deleteGame(currentGame.season);
                                         clearMsg();"
@@ -506,7 +504,7 @@
                         </button>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <button 
-                                class="butn btn-warning btn-lg" 
+                                class="btn btn-warning btn-lg"
                                 @click="showDeleteForm=false;"
                         >No
                         </button>
@@ -528,12 +526,12 @@
 
         // Change dropdown menu value
         $('.dropdown-menu li a').click(function() {
+            let dropDown = $('.dropdown > a')
             
             let newHeading = $(this).text()
-            let $heading   = $('.dropdown > a')
-            let $caret     = $('.caret', $heading)
+            let $caret     = $('.caret', dropDown)
 
-            $('.dropdown > a').html(newHeading + ' ').append($caret)
+            dropDown.html(newHeading + ' ').append($caret)
         });
 
     </script>
