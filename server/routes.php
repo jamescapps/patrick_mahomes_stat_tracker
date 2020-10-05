@@ -35,3 +35,13 @@
         $year = getYear($action);
         echo $API -> deleteGame($year);
     }
+
+    if (strpos($action, "totals") !== false) {
+        $year = getYear($action);
+        echo $API -> getTotals($year);
+    }
+
+    if (strpos($action, "averages") !== false) {
+        $year = getYear($action);
+        echo $API -> getAverages($year);
+    }

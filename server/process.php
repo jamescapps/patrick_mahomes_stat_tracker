@@ -162,5 +162,51 @@
             }
         }
 
+        //Need to figure out how to do wins and losses.
+        public function getTotals($season) {
+            $seasonTB = $this -> checkSeason($season);
+
+            $totals = array();
+            $db = new Connect;
+            $sql = $db -> prepare("SELECT 
+                                                SUM(comp) as 'Comp',
+                                                SUM(att) as 'Att',
+                                                SUM(yds) as 'Yds',
+                                                SUM(td) as 'TD',
+                                                SUM(ints) as 'Ints',
+                                                SUM(rushyds) as 'RushYds'
+                                            FROM $seasonTB");
+
+            $sql -> execute();
+
+            $totals   = $sql -> fetch(PDO::FETCH_ASSOC);
+
+            return json_encode($totals);
+
+        }
+
+        public function getAverages($season) {
+            $seasonTB = $this -> checkSeason($season);
+
+            $averages = array();
+            $db = new Connect;
+            $sql = $db -> prepare("SELECT 
+                                                ROUND(AVG(comp), 0) as 'Comp',
+                                                ROUND(AVG(att), 0) as 'Att',
+                                                ROUND(AVG(compPerc), 2) as 'CompPerc',
+                                                ROUND(AVG(yds), 0) as 'Yds',
+                                                ROUND(AVG(td), 0) as 'TD',
+                                                ROUND(AVG(ints), 0) as 'Ints',
+                                                ROUND(AVG(rate), 1) as 'Rate',
+                                                ROUND(AVG(rushyds), 1) as 'RushYds'
+                                            FROM $seasonTB");
+
+            $sql -> execute();
+
+            $averages   = $sql -> fetch(PDO::FETCH_ASSOC);
+
+            return json_encode($averages);
+        }
+
     }
 

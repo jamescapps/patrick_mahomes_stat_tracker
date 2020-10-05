@@ -49,6 +49,8 @@
                                     id="defaultOption"
                                     href="#" 
                                     @click="getAllGames('twentytwenty');
+                                            getTotals('twentytwenty');
+                                            getAverages('twentytwenty');
                                             selectSeason('twentytwenty');
                                             clearMsg();"
                                     >2020
@@ -59,7 +61,9 @@
                                     class="dropdown-item"
                                     href="#" 
                                     @click="getAllGames('twentynineteen');
-                                            selectSeason('twentynineteen')
+                                            getTotals('twentynineteen');
+                                            getAverages('twentynineteen');
+                                            selectSeason('twentynineteen');
                                             clearMsg();"
                                     >2019
                                 </a>
@@ -69,6 +73,8 @@
                                     class="dropdown-item"
                                     href="#" 
                                     @click="getAllGames('twentyeighteen');
+                                            getTotals('twentyeighteen');
+                                            getAverages('twentyeighteen');
                                             selectSeason('twentyeighteen')
                                             clearMsg();"
                                     >2018
@@ -79,7 +85,9 @@
                                     class="dropdown-item"
                                     href="#" 
                                     @click="getAllGames('twentyseventeen');
-                                            selectSeason('twentyseventeen')
+                                            getTotals('twentyseventeen');
+                                            getAverages('twentyseventeen');
+                                            selectSeason('twentyseventeen');
                                             clearMsg();"
                                     >2017
                                 </a>
@@ -120,11 +128,9 @@
                             <th>L </th>
                             <th>Comp</th>
                             <th>Att</th>
-                            <th>Comp%</th>
                             <th>Yds</th>
                             <th>TD</th>
                             <th>Int</th>
-                            <th>Rate</th>
                             <th>RushYds</th>
 
                         </tr>
@@ -137,16 +143,14 @@
                             style="color:white;"
                            >
 
-                            <td>10</td>
-                            <td>6</td>
-                            <td>72</td>
-                            <td>322</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>123</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ totals.Comp }}</td>
+                            <td>{{ totals.Att}}</td>
+                            <td>{{ totals.Yds }}</td>
+                            <td>{{ totals.TD }}</td>
+                            <td>{{totals.Ints }}</td>
+                            <td>{{totals.RushYds }}</td>
 
                         </tr>
                         </tbody>
@@ -182,14 +186,14 @@
                             style="color:white;"
                         >
 
-                            <td>72</td>
-                            <td>322</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>123</td>
+                            <td>{{ averages.Comp }}</td>
+                            <td>{{ averages.Att}}</td>
+                            <td>{{ averages.CompPerc }}</td>
+                            <td>{{ averages.Yds }}</td>
+                            <td>{{ averages.TD }}</td>
+                            <td>{{ averages.Ints }}</td>
+                            <td>{{ averages.Rate }}</td>
+                            <td>{{ averages.RushYds }}</td>
 
                         </tr>
                         </tbody>
