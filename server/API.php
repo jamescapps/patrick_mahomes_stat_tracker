@@ -4,8 +4,7 @@
 
     class API {
 
-        private function checkSeason($season): string
-        {
+        private function checkSeason($season): string {
             $seasonTB = "";
 
             switch($season) {
@@ -26,8 +25,7 @@
             return $seasonTB;
         }
 
-        public function selectAllData($season)
-        {
+        public function selectAllData($season) {
             $seasonTB = $this -> checkSeason($season);
           
             $games = array();
@@ -61,7 +59,7 @@
             return json_encode($games);
         }
 
-        public function addGame($season)
+        public function addGame($season): ?string
         {
             $seasonTB = $this -> checkSeason($season);
 
@@ -105,7 +103,7 @@
             }
         }
 
-        public function updateGame($season)
+        public function updateGame($season): ?string
         {
             $seasonTB = $this -> checkSeason($season);
 
@@ -150,8 +148,7 @@
             }
         }
 
-        public function deleteGame($season): ?string
-        {
+        public function deleteGame($season): ?string {
             $seasonTB = $this -> checkSeason($season);
 
             $db   = new Connect;
@@ -167,11 +164,9 @@
         }
 
         //Need to figure out how to do wins and losses.
-        public function getTotals($season)
-        {
+        public function getTotals($season) {
             $seasonTB = $this -> checkSeason($season);
 
-            $totals = array();
             $db = new Connect;
             $sql = $db -> query("SELECT 
                                                 SUM(comp) as 'Comp',
@@ -188,11 +183,9 @@
 
         }
 
-        public function getAverages($season)
-        {
+        public function getAverages($season) {
             $seasonTB = $this -> checkSeason($season);
 
-            $averages = array();
             $db = new Connect;
             $sql = $db -> query("SELECT 
                                                 ROUND(AVG(comp), 0) as 'Comp',
@@ -211,8 +204,7 @@
         }
 
 
-       public function getResults($season)
-       {
+       public function getResults($season) {
             $seasonTB = $this -> checkSeason($season);
 
             $results= array();
