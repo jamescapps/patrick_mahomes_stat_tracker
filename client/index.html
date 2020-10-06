@@ -412,6 +412,8 @@
                                         class="btn btn-warning btn-block btn-lg"
                                         @click="showAddForm=false;
                                                 addGame(currentGame.season);
+                                                getTotals(currentGame.season);
+                                                getAverages(currentGame.season);
                                                 clearMsg();"
                                 >Add Data
                                 </button>
@@ -560,6 +562,8 @@
                                         class="btn btn-warning btn-block btn-lg" 
                                         @click="showEditForm=false; 
                                                 updateGame(currentGame.season);
+                                                getAverages(currentGame.season);
+                                                getTotals(currentGame.season);
                                                 clearMsg();"
                                 >Update Data
                                 </button>
@@ -595,6 +599,8 @@
                                 class="btn btn-danger btn-lg"
                                 @click="showDeleteForm=false; 
                                         deleteGame(currentGame.season);
+                                        getTotals(currentGame.season);
+                                        getAverages(currentGame.season);
                                         clearMsg();"
                         >Yes
                         </button>
