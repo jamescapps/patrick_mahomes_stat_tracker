@@ -1,7 +1,7 @@
  
 <?php
 
-    require_once("./process.php");
+    require_once("./API.php");
 
     $action = "";
     $API    = new API;
@@ -14,7 +14,9 @@
     }
 
 
-    if (isset($_GET['action'])) $action = $_GET['action'];
+    if (isset($_GET['action'])) {
+        $action = $_GET['action'];
+    }
 
     if (strpos($action, "read") !== false) {
         $year = getYear($action);
@@ -45,3 +47,10 @@
         $year = getYear($action);
         echo $API -> getAverages($year);
     }
+
+    if (strpos($action, "results") !== false) {
+        $year = getYear($action);
+        echo $API -> getResults($year);
+    }
+
+

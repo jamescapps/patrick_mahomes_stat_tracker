@@ -52,6 +52,7 @@
                                             getTotals('twentytwenty');
                                             getAverages('twentytwenty');
                                             selectSeason('twentytwenty');
+                                            getResults('twentytwenty');
                                             clearMsg();"
                                     >2020
                                 </a>
@@ -64,6 +65,7 @@
                                             getTotals('twentynineteen');
                                             getAverages('twentynineteen');
                                             selectSeason('twentynineteen');
+                                            getResults('twentynineteen');
                                             clearMsg();"
                                     >2019
                                 </a>
@@ -75,7 +77,8 @@
                                     @click="getAllGames('twentyeighteen');
                                             getTotals('twentyeighteen');
                                             getAverages('twentyeighteen');
-                                            selectSeason('twentyeighteen')
+                                            selectSeason('twentyeighteen');
+                                            getResults('twentyeighteen');
                                             clearMsg();"
                                     >2018
                                 </a>
@@ -88,6 +91,7 @@
                                             getTotals('twentyseventeen');
                                             getAverages('twentyseventeen');
                                             selectSeason('twentyseventeen');
+                                            getResults('twentyseventeen');
                                             clearMsg();"
                                     >2017
                                 </a>
@@ -123,7 +127,6 @@
                         <thead>
                         <tr class="text-center bg-danger text-warning">
 
-
                             <th>W</th>
                             <th>L </th>
                             <th>Comp</th>
@@ -143,8 +146,8 @@
                             style="color:white;"
                            >
 
-                            <td></td>
-                            <td></td>
+                            <td>{{ results.wins }}</td>
+                            <td>{{ results.losses }}</td>
                             <td>{{ totals.Comp }}</td>
                             <td>{{ totals.Att}}</td>
                             <td>{{ totals.Yds }}</td>
@@ -318,11 +321,11 @@
                                 >
                             </div>
                             <div class="form-group">
-                                <input 
-                                        class="form-control-lg" 
-                                        type="text" 
-                                        name="result" 
-                                        placeholder="Result" 
+                                <input
+                                        class="form-control-lg"
+                                        type="text"
+                                        name="result"
+                                        placeholder="Result"
                                         v-model="newGame.result"
                                 >
                             </div>
@@ -414,6 +417,7 @@
                                                 addGame(currentGame.season);
                                                 getTotals(currentGame.season);
                                                 getAverages(currentGame.season);
+                                                getResults(currentGame.season);
                                                 clearMsg();"
                                 >Add Data
                                 </button>
@@ -564,6 +568,7 @@
                                                 updateGame(currentGame.season);
                                                 getAverages(currentGame.season);
                                                 getTotals(currentGame.season);
+                                                getResults(currentGame.season);
                                                 clearMsg();"
                                 >Update Data
                                 </button>
@@ -601,6 +606,7 @@
                                         deleteGame(currentGame.season);
                                         getTotals(currentGame.season);
                                         getAverages(currentGame.season);
+                                        getResults(currentGame.season);
                                         clearMsg();"
                         >Yes
                         </button>

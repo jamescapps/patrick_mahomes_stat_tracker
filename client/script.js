@@ -15,6 +15,7 @@ const app = new Vue({
         showDeleteForm: false,
         totals: [],
         averages: [],
+        results: [],
         games: [],
         newGame: {
 
@@ -39,6 +40,7 @@ const app = new Vue({
         this.getTotals("twentytwenty")
         this.getAverages("twentytwenty")
         this.getAllGames("twentytwenty")
+        this.getResults("twentytwenty")
         this.currentGame.season = "twentytwenty"
     },
 
@@ -163,6 +165,18 @@ const app = new Vue({
                             app.errorMsg = response.data.message
                         } else {
                             app.averages = response.data
+                        }
+                    }
+                )
+        },
+
+        getResults(season) {
+            axios.get(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=results/${season}`)
+                .then((response) => {
+                        if (response.data.error) {
+                            app.errorMsg = response.data.message
+                        } else {
+                            app.results = response.data
                         }
                     }
                 )
