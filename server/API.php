@@ -27,12 +27,12 @@
 
         public function selectAllData($season) {
             $seasonTB = $this -> checkSeason($season);
-          
+
             $games = array();
-            $db = new Connect;
+            $db    = new Connect;
 
             // Order by does not appear to be working.
-            $sql  = $db -> query("SELECT * FROM $seasonTB ORDER BY id DESC");
+            $sql = $db -> query("SELECT * FROM $seasonTB ORDER BY id DESC");
 
             while ($outputData = $sql -> fetch(PDO::FETCH_ASSOC)) {
                 $games[$outputData["id"]] = array(
@@ -107,7 +107,7 @@
         {
             $seasonTB = $this -> checkSeason($season);
 
-            $db = new Connect;
+            $db  = new Connect;
             $sql = $db -> prepare("UPDATE $seasonTB SET
                                  date     = ?,
                                  week     = ?,
@@ -163,11 +163,10 @@
             }
         }
 
-        //Need to figure out how to do wins and losses.
         public function getTotals($season) {
             $seasonTB = $this -> checkSeason($season);
 
-            $db = new Connect;
+            $db  = new Connect;
             $sql = $db -> query("SELECT 
                                                 SUM(comp) as 'Comp',
                                                 SUM(att) as 'Att',
@@ -177,7 +176,7 @@
                                                 SUM(rushyds) as 'RushYds'
                                             FROM $seasonTB");
 
-            $totals   = $sql -> fetch(PDO::FETCH_ASSOC);
+            $totals = $sql -> fetch(PDO::FETCH_ASSOC);
 
             return json_encode($totals);
 
@@ -186,7 +185,7 @@
         public function getAverages($season) {
             $seasonTB = $this -> checkSeason($season);
 
-            $db = new Connect;
+            $db  = new Connect;
             $sql = $db -> query("SELECT 
                                                 ROUND(AVG(comp), 0) as 'Comp',
                                                 ROUND(AVG(att), 0) as 'Att',
@@ -198,43 +197,61 @@
                                                 ROUND(AVG(rushyds), 1) as 'RushYds'
                                             FROM $seasonTB");
 
-            $averages   = $sql -> fetch(PDO::FETCH_ASSOC);
+            $averages = $sql -> fetch(PDO::FETCH_ASSOC);
 
             return json_encode($averages);
         }
 
+        // This way produces a type error when rendering in the html
+       /*public function getResults($season) {
+            $seasonTB = $this -> checkSeason($season);
 
-       public function getResults($season) {
+            $results = array();
+            $db  = new Connect;
+            $sql = $db -> query("SELECT result, count(*) FROM $seasonTB GROUP BY result");
+
+           while ($outputData = $sql -> fetch(PDO::FETCH_ASSOC)) {
+               $results[$outputData["result"]] = array(
+                   "count"  => $outputData["count(*)"] . ""
+               );
+           }
+
+         return json_encode($results);
+
+        }*/
+
+        public function getResults($season) {
             $seasonTB = $this -> checkSeason($season);
 
             $results= array();
             $db = new Connect;
             $sql = $db -> query("SELECT result, id FROM $seasonTB");
 
-           while ($outputData = $sql -> fetch(PDO::FETCH_ASSOC)) {
-               $results[$outputData["id"]] = array(
-                   "result"     => $outputData["result"]
-               );
-           }
+            while ($outputData = $sql -> fetch(PDO::FETCH_ASSOC)) {
+                $results[$outputData["id"]] = array(
+                    "result"     => $outputData["result"]
+                );
+            }
 
-           $wins = 0;
-           $losses = 0;
+            $wins = 0;
+            $losses = 0;
 
-           foreach($results as $result) {
-               if ($result['result'] === "W") {
-                   $wins++;
-               } else {
-                   $losses++;
-               }
-           }
+            foreach($results as $result) {
+                if ($result['result'] === "W") {
+                    $wins++;
+                } else {
+                    $losses++;
+                }
+            }
 
-           $winsAndLosses =  array(
-               "wins"=> $wins, "losses" => $losses
-           );
+            $winsAndLosses =  array(
+                "wins"=> $wins, "losses" => $losses
+            );
 
-           return json_encode($winsAndLosses);
+            return json_encode($winsAndLosses);
 
         }
+
 
     }
 

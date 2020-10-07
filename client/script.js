@@ -1,3 +1,4 @@
+
 // Toggle dropdown
 $(document).ready(() => {
     $('dropdown-toggle').dropdown()
@@ -67,83 +68,83 @@ const app = new Vue({
 
         getAllGames(season) {
             axios.get(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=read/${season}`)
-                 .then((response) => {
-                    if (response.data.error) {
-                        app.errorMsg = response.data.message
-                    } else {
-                        app.games = response.data
+                .then((response) => {
+                        if (response.data.error) {
+                            app.errorMsg = response.data.message
+                        } else {
+                            app.games = response.data
+                        }
                     }
-                }
-            )
+                )
         },
 
         addGame(season) {
             const formData = app.toFormData(app.newGame)
 
             axios.post(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=create/${season}`, formData)
-                 .then((response) => {
-                    app.newGame = {
-                        date: "",
-                        week: "",
-                        opp: "",
-                        result: "",
-                        score: "",
-                        comp: "",
-                        compPerc: "",
-                        yds: "",
-                        td: "",
-                        int: "",
-                        rate: "",
-                        rushyds: ""
+                .then((response) => {
+                        app.newGame = {
+                            date: "",
+                            week: "",
+                            opp: "",
+                            result: "",
+                            score: "",
+                            comp: "",
+                            compPerc: "",
+                            yds: "",
+                            td: "",
+                            int: "",
+                            rate: "",
+                            rushyds: ""
 
-                    };
+                        };
 
-                    if (response.data.error) {
-                        app.errorMsg = response.data
-                    } else {
-                        app.successMsg = response.data
+                        if (response.data.error) {
+                            app.errorMsg = response.data
+                        } else {
+                            app.successMsg = response.data
+                        }
+
+                        app.getAllGames(season)
                     }
-
-                    app.getAllGames(season)
-                }
-            )
+                )
         },
 
         updateGame(season) {
             const formData = app.toFormData(app.currentGame)
 
             axios.post(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=update/${season}`, formData)
-                 .then((response) => {
+                .then((response) => {
 
-                    app.currentGame = {}
+                        app.currentGame = {}
 
-                    if (response.data.error) {
-                        app.errorMsg = response.data
-                    } else {
-                        app.successMsg = response.data
+                        if (response.data.error) {
+                            app.errorMsg = response.data
+                        } else {
+                            app.successMsg = response.data
+                        }
+
+                        app.getAllGames(season)
                     }
-
-                     app.getAllGames(season)
-                }
-            )
+                )
         },
 
         deleteGame(season) {
             const formData = app.toFormData(app.currentGame)
 
             axios.post(`http://localhost/Patrick_Mahomes_Stats/server/routes.php?action=delete/${season}`, formData)
-                 .then((response) => {
-                    app.currentGame = {}
+                .then((response) => {
+                        app.currentGame = {}
 
-                    if (response.data.error) {
-                        app.errorMsg = response.data.message
-                    } else {
-                        app.successMsg = response.data
+                        if (response.data.error) {
+                            app.errorMsg = response.data.message
+                        } else {
+                            app.successMsg = response.data
+                        }
+
+                        app.getAllGames(season)
                     }
-
-                     app.getAllGames(season)
-                }
-            )
+                )
         },
 
         getTotals(season) {
